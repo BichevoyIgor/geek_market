@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
+
+    <title>Добавление товара</title>
+    <link rel="icon" type="image/png" th:href="@{/static/favicon.ico}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+<div th:replace="~{navigation :: navi(Shop)}"/>
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+                <form th:action="@{/products/add}" method="post">
+                <input type="hidden" id="id" th:field="${product.id}">
+                <div class="form-group">
+                    <label>Категория товара</label>
+                    <select class="form-control" id="cat" name="cat" required>
+                        <option value="">...</option>
+                        <option th:each="category : ${categories}"
+                                th:value="${category.title}"
+                                th:text="${category.title}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>vendorCode</label>
+                    <input type="text" class="form-control" id="vendorCode" th:field="${product.vendorCode}">
+                </div>
+                <div class="form-group">
+                    <label>Короткое описание товара</label>
+                    <input type="text" class="form-control" id="shortDescription" th:field="${product.shortDescription}">
+                </div>
+                <div class="form-group">
+                    <label>Полное описание товара</label>
+                    <input type="text" class="form-control" id="fullDescription" th:field="${product.fullDescription}">
+                </div>
+                <div class="form-group">
+                    <label>Название товара</label>
+                    <input type="text" class="form-control" id="title" th:field="${product.title}">
+                </div>
+                <div class="form-group">
+                    <label>Цена товара</label>
+                    <input type="text" class="form-control" id="price" th:field="${product.price}">
+                </div>
+                <div class="form-group">
+                    <label>Картинка</label>
+                    <input type="text" class="form-control" id="path" th:field="${productImage.path}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
